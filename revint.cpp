@@ -10,19 +10,21 @@ int Solution::reverse(int A) {
     }
     
     int rev = 0;
+    
     while(A>0){
+        
         int dig = A%10;
-        int old_rev = rev;
-        rev = rev*10 + dig;
-        if(rev<0 && old_rev>0){
-            if(!(isNeg && rev==INT_MIN)) return 0;
+        int maxVal = (INT_MAX-dig)/10;
+        if(rev>maxVal){
+            return 0;
         }
+        rev = (rev*10 + dig);
+        
         A/=10;
     }
     
     if(isNeg){
-        if(rev==INT_MIN) return rev;
-        else return (-1)*rev;
+        return (-1)*rev;
     }
     
     return rev;
