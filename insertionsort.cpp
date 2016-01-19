@@ -6,6 +6,13 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+ 
+void printList(ListNode*A){
+    ListNode* curr = A;
+    while(curr!=NULL){
+        cout<<curr->val<<endl;
+    }
+}
 ListNode* Solution::insertionSortList(ListNode* A) {
     // Do not write main() function.
     // Do not read input, instead use the arguments to the function.
@@ -49,7 +56,7 @@ ListNode* Solution::insertionSortList(ListNode* A) {
         else{
             curr = prev_curr->next;
         }
-        
+        printList(A);
         
     }
     return A;
