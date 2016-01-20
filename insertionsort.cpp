@@ -10,8 +10,11 @@
 void printList(ListNode*A){
     ListNode* curr = A;
     while(curr!=NULL){
-        cout<<curr->val<<endl;
+        cout<<curr->val<<" ";
+        curr=curr->next;
     }
+    cout<<endl;
+    
 }
 ListNode* Solution::insertionSortList(ListNode* A) {
     // Do not write main() function.
@@ -27,12 +30,19 @@ ListNode* Solution::insertionSortList(ListNode* A) {
     while(curr!=NULL){
         ListNode* start = A;
         ListNode * prev_start = NULL;
+        //cout<<"before "<<endl;
+        //printList(A);
+        //cout<<"curr -> val is "<<curr->val<<endl;
+        //cout<<"start -> val is "<<start->val<<endl;
+        
         while(start!=curr){
+            //cout<<"in loop "<<start->val<<" "<<curr->val<<endl;
             if(start->val<=curr->val){
                 prev_start = start;
                 start= start->next;
             }
             else{
+                //cout<<"yo bitch"<<endl;
                 if(prev_start==NULL){
                     prev_curr ->next= curr->next;
                     curr->next = start;
@@ -43,10 +53,11 @@ ListNode* Solution::insertionSortList(ListNode* A) {
                     prev_start->next=curr;
                     curr->next = start;
                 }
+                break;
                 
             }
             
-            break;
+           
         }
         
         if(prev_curr->next== curr){
@@ -56,7 +67,8 @@ ListNode* Solution::insertionSortList(ListNode* A) {
         else{
             curr = prev_curr->next;
         }
-        printList(A);
+        //cout<<"after"<<endl;
+        //printList(A);
         
     }
     return A;
