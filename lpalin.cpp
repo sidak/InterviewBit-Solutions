@@ -37,7 +37,13 @@ int Solution::lPalin(ListNode* A) {
         rhead = prev;
         ListNode * lhead = A;
         
-        while(lhead!=rhead || ((lhead->next == rhead) && (rhead->next == lhead)) ){
+        while(lhead!=rhead && !((lhead->next == rhead) && (rhead->next == lhead)) ){
+            if(lhead->val != rhead->val) return 0;
+            lhead= lhead->next;
+            rhead= rhead->next;
+        }
+        
+        if((lhead->next == rhead) && (rhead->next == lhead)){
             if(lhead->val != rhead->val) return 0;
         }
         return 1;
