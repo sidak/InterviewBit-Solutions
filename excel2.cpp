@@ -7,21 +7,18 @@ string Solution::convertToTitle(int A) {
     string ans="";
     char col;
     while(A>0){
-        if(A<=26){
-            col = 'A' + (A-1);
-            ans = col + ans;
-            break;
-        }
-        
         int dig = A%26;
-        int num = A/26;
+        A/=26;
         if(dig == 0){
-            num --;
+            dig = 26;
+            A --;
         }
-        
-        A -= 26*num;
-        col = 'A' + (num-1);
+        col = 'A' + (dig-1);
         ans = col + ans;
+        
+        // col = 'A' + (A-1)%26;
+        // ans = col + ans;
+        // ans = (ans-1)/26;
     }
     return ans;
 }
