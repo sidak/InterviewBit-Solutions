@@ -25,25 +25,26 @@ int Solution::trap(const vector<int> &A) {
     
     while(i<n){
         
+        st.push(A[i]);
+        minHt = min(minHt, A[i]);
         
-        if(A[i+1]<A[i]){
-                
+        if(A[i] > minHt){
+            if((i<(n-1) && A[i]>A[i+1]) || i==(n-1)){
+                // compute trap in this phase uptill now
+                int maxHt = min(A[i], leftHt);
+                while(!st.empty()){
+                    if(st.top()<maxHt) ans += maxHt - st.top();
+                    st.pop();
+                }
+                leftHt = A[i];
+                minHt = A[i];
+                st.push(A[i]);
+            }
         }
-        else{
-            
-        }
-        
-        
+        //cout<<"for i : "<<i<<" minHt is "<<minHt<<" & leftHt is "<<leftHt<<" and ans is "<<ans<<endl;
         i++;
     }
     
-    if(i==(n) && !st.empty()){
-        int maxHt = max(st.top(), leftHt);
-        while(!st.empty()){
-            ans += maxHt - st.top();
-            st.pop();
-        }
-    }
     
     return ans;
 }
